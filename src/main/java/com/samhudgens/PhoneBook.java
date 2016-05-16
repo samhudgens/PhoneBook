@@ -8,14 +8,21 @@ import java.util.Map;
  */
 public class PhoneBook {
 
-    Map<String, String> phoneBookEntries;
+    private Map<String, String> phoneBookEntries = new HashMap<String, String>();
 
-    PhoneBook() {
-        phoneBookEntries = new HashMap<String, String>();
-    }
+
 
     public String lookup(String name) {
         return phoneBookEntries.get(name);
+    }
+
+    public String reverseLookup(String number) {
+        for (String name : phoneBookEntries.keySet()) {
+            if (phoneBookEntries.get(name).equals(number)) {
+                return name;
+            }
+        }
+        return null;
     }
 
     public void addEntry(String name, String number) {
@@ -26,4 +33,9 @@ public class PhoneBook {
     public void removeEntry(String name) {
         phoneBookEntries.remove(name);
     }
+
+    public void listAllEntries() {
+
+    }
+
 }

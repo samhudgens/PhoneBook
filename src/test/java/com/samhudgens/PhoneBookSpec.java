@@ -35,9 +35,18 @@ public class PhoneBookSpec {
     }
 
     @Test
+    public void reverseLookup() {
+
+        String expected = "Bob";
+        String actual = phoneBook.reverseLookup("555-8787");
+        assertEquals("String should show the name", expected, actual);
+    }
+
+    @Test
     public void removeEntryTest() {
         phoneBook.removeEntry("Bob");
         String actual = phoneBook.lookup("Bob");
         assertNull("Should be null", actual);
     }
+
 }
