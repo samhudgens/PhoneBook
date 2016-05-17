@@ -14,6 +14,7 @@ public class PhoneBookSpec {
 
     PhoneBook phoneBook;
     ArrayList<String> numbers;
+
     @Before
     public void initialize() {
         phoneBook = new PhoneBook();
@@ -60,9 +61,9 @@ public class PhoneBookSpec {
     public void listAllEntriesTest() {
         phoneBook.addEntry("Anthony",numbers);
         String expected = "Name: Anthony\n"+
-        "Number: 57382\n"+
+        "Number: [555-8787, 873892483]\n"+
         "Name: Bob\n"+
-        "Number: 555-8787\n";
+        "Number: [555-8787, 873892483]\n";
         String actual = phoneBook.listAllEntries();
         assertEquals("Should print a bunch of entries", expected, actual);
     }
