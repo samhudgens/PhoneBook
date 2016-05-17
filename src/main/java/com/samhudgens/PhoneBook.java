@@ -1,14 +1,13 @@
 package com.samhudgens;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by samhudgens on 5/16/16.
  */
 public class PhoneBook {
 
-    private Map<String, String> phoneBookEntries = new HashMap<String, String>();
+    private Map<String, String> phoneBookEntries = new TreeMap<String, String>();
 
 
 
@@ -34,8 +33,28 @@ public class PhoneBook {
         phoneBookEntries.remove(name);
     }
 
-    public void listAllEntries() {
 
+    public String listAllEntries() {
+        String s = "";
+        Set phoneBookSet = phoneBookEntries.entrySet();
+        Iterator it = phoneBookSet.iterator();
+        while(it.hasNext()) {
+            Map.Entry contact= (Map.Entry)it.next();
+            s += "Name: " + contact.getKey() + "\n" + "Number: " + contact.getValue() + "\n";
+            //System.out.println("Name: " + contact.getKey() + "\n" + "Number: " + contact.getValue());
+        }
+        System.out.println(s);
+        return s;
+    }
+
+    public String listAllNames() {
+        String s = "";
+        for(Map.Entry<String, String> entry : phoneBookEntries.entrySet()) {
+            String name = entry.getKey();
+            s+= name + "\n";
+        }
+        System.out.println(s);
+        return s;
     }
 
 }

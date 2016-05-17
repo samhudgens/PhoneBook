@@ -22,7 +22,7 @@ public class PhoneBookSpec {
     public void addEntryTest() {
         String expected = "555-8787";
         String name = "Bob";
-        phoneBook.addEntry(name, expected);
+        //phoneBook.addEntry(name, expected);
         String actual = phoneBook.lookup(name);
         assertEquals("The string should show a phone number", expected, actual);
     }
@@ -36,7 +36,6 @@ public class PhoneBookSpec {
 
     @Test
     public void reverseLookup() {
-
         String expected = "Bob";
         String actual = phoneBook.reverseLookup("555-8787");
         assertEquals("String should show the name", expected, actual);
@@ -49,4 +48,22 @@ public class PhoneBookSpec {
         assertNull("Should be null", actual);
     }
 
+    @Test
+    public void listAllEntriesTest() {
+        phoneBook.addEntry("Anthony","57382");
+        String expected = "Name: Anthony\n"+
+        "Number: 57382\n"+
+        "Name: Bob\n"+
+        "Number: 555-8787\n";
+        String actual = phoneBook.listAllEntries();
+        assertEquals("Should print a bunch of entries", expected, actual);
+    }
+
+    @Test
+    public void listAllNamesTest() {
+        phoneBook.addEntry("Anthony", "573582");
+        String expected = "Anthony\nBob\n";
+        String actual = phoneBook.listAllNames();
+        assertEquals("should print the names", expected, actual);
+    }
 }
