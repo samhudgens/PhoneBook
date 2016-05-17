@@ -3,6 +3,8 @@ package com.samhudgens;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 /**
@@ -11,27 +13,32 @@ import static org.junit.Assert.*;
 public class PhoneBookSpec {
 
     PhoneBook phoneBook;
+    ArrayList<String> numbers;
     @Before
     public void initialize() {
         phoneBook = new PhoneBook();
-
-        phoneBook.addEntry("Bob", "555-8787");
+        numbers = new ArrayList<String>();
+        numbers.add("555-8787");
+        numbers.add("873892483");
+        phoneBook.addEntry("Bob", numbers);
     }
 
-    @Test
-    public void addEntryTest() {
-        String expected = "555-8787";
-        String name = "Bob";
-        //phoneBook.addEntry(name, expected);
-        String actual = phoneBook.lookup(name);
-        assertEquals("The string should show a phone number", expected, actual);
-    }
+//    @Test
+//    public void addEntryTest() {
+//        ArrayList<String> expected = new ArrayList<String>();
+//        expected.add("555-8787");
+//        expected.add("873892483");
+//        ArrayList<String> actual = phoneBook.addEntry("Bob", );
+//        assertEquals("The string should show a phone number", expected, actual);
+//    }
 
     @Test
     public void lookupTest() {
-        String expected = "555-8787";
-        String actual = phoneBook.lookup("Bob");
-        assertEquals("The String should show the phone number", expected, actual);
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add("555-8787");
+        expected.add("873892483");
+        ArrayList<String> actual = phoneBook.lookup("Bob");
+        assertEquals("Should test to see if numbers are the same", expected, actual);
     }
 
     @Test
@@ -43,14 +50,15 @@ public class PhoneBookSpec {
 
     @Test
     public void removeEntryTest() {
+        phoneBook.addEntry("Antonio", numbers);
         phoneBook.removeEntry("Bob");
-        String actual = phoneBook.lookup("Bob");
+        ArrayList<String> actual = phoneBook.lookup("Bob");
         assertNull("Should be null", actual);
     }
 
     @Test
     public void listAllEntriesTest() {
-        phoneBook.addEntry("Anthony","57382");
+        phoneBook.addEntry("Anthony",numbers);
         String expected = "Name: Anthony\n"+
         "Number: 57382\n"+
         "Name: Bob\n"+
@@ -61,7 +69,7 @@ public class PhoneBookSpec {
 
     @Test
     public void listAllNamesTest() {
-        phoneBook.addEntry("Anthony", "573582");
+        phoneBook.addEntry("Anthony", numbers);
         String expected = "Anthony\nBob\n";
         String actual = phoneBook.listAllNames();
         assertEquals("should print the names", expected, actual);

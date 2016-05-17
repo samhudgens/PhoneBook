@@ -7,11 +7,11 @@ import java.util.*;
  */
 public class PhoneBook {
 
-    private Map<String, String> phoneBookEntries = new TreeMap<String, String>();
+    private Map<String, ArrayList<String>> phoneBookEntries = new TreeMap<String, ArrayList<String>>();
 
 
 
-    public String lookup(String name) {
+    public ArrayList<String> lookup(String name) {
         return phoneBookEntries.get(name);
     }
 
@@ -24,7 +24,7 @@ public class PhoneBook {
         return null;
     }
 
-    public void addEntry(String name, String number) {
+    public void addEntry(String name, ArrayList<String> number) {
 
         phoneBookEntries.put(name, number);
     }
@@ -49,7 +49,7 @@ public class PhoneBook {
 
     public String listAllNames() {
         String s = "";
-        for(Map.Entry<String, String> entry : phoneBookEntries.entrySet()) {
+        for(Map.Entry<String, ArrayList<String>> entry : phoneBookEntries.entrySet()) {
             String name = entry.getKey();
             s+= name + "\n";
         }
