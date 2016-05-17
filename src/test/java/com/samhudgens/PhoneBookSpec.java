@@ -55,6 +55,7 @@ public class PhoneBookSpec {
         phoneBook.removeEntry("Bob");
         ArrayList<String> actual = phoneBook.lookup("Bob");
         assertNull("Should be null", actual);
+        phoneBook.listAllEntries();
     }
 
     @Test
